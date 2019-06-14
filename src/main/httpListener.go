@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"os"
 )
 
 type HttpListener struct {
@@ -30,8 +29,6 @@ func (p *HttpListener) listen(port int) {
 type AddressData struct {
 	Addr string      `json:"address" bson:"address"` 
 	City string      `json:"city"`
-	Latitude string  `json:"latitude"`
-	Longitude string `json:"longitude"`
 }
 
 type Address struct {
@@ -39,25 +36,31 @@ type Address struct {
 	Data  AddressData `json:"address"`
 }
 
+/* 处理地址信息 */
 func (p *HttpListener)handlePosition (w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
+	//访问控制允许全部来源 允许跨域
+	w.Header().Set("Access-Control-Allow-Origin","*")
 
 	query := r.URL.Query()
-	if len(query) == 0 {
-		fmt.Fprintf(os.Stdout,"经纬度参数不存在")
-		return
-	}
 	latitude := query.Get("latitude")
 	longitude := query.Get("longitude")
-	address,err := p.dbInfo.findAddress(latitude,longitude)
+
+	checkResult := p.checkFields(latitude,longitude)
+	if !checkResult {
+		sErr := p.makeResult(1000,"缺少必要字段")
+		w.Write([]byte(sErr))
+		return
+	}
+	addressData,err := p.dbInfo.findAddress(latitude,longitude)
 	if err != nil {
-		fmt.Fprintf(os.Stdout,"查询地址信息错误,%v\n",err)
+		sErr := p.makeResult(1001,"查询地址信息失败")
+		w.Write([]byte(sErr))
 		return
 	}
-	buf,err01 := json.Marshal(address)
-	if err01 != nil {
-		fmt.Fprintf(os.Stdout,"地址信息解析为json格式错误,%v\n",err01)
-		return
+	address := Address{
+		Code: 0,
+		Data: addressData,
 	}
+	buf,_ := json.Marshal(address)
 	w.Write(buf)
 }

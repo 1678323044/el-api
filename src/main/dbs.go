@@ -34,15 +34,15 @@ func (p *DBInfo) Close() {
 	p.session.Close()
 }
 
-func (p *DBInfo) findAddress(latitude,longitude string)(Address,error) {
+func (p *DBInfo) findAddress(latitude,longitude string)(AddressData,error) {
 	s := p.session.Copy()
 	defer s.Close()
 	c := s.DB(p.dbName).C(CollectionAddress)
-	var address Address
-	err := c.Find(bson.M{"data.latitude":latitude,"data.longitude":longitude}).One(&address)
+	var addressData AddressData
+	err := c.Find(bson.M{"latitude": latitude,"longitude": longitude}).One(&addressData)
 	if err != nil {
-		fmt.Printf("查询地址错误,err:%v\n",err)
-		return address,err
+		debugLog.Printf("查询地址错误，err：%v\n",err)
+		return addressData,err
 	}
-	return address,err
+	return addressData,err
 }
