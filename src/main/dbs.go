@@ -14,6 +14,7 @@ type DBInfo struct {
 
 /* 设置集合常量 */
 const (
+	CollectionUser string = "user"
 	CollectionAddress string = "address"
 )
 
@@ -34,6 +35,21 @@ func (p *DBInfo) Close() {
 	p.session.Close()
 }
 
+//查询用户登录信息
+func (p *DBInfo) findUser(username,password string) (UserData,error){
+	s := p.session.Copy()
+	defer s.Close()
+	c := s.DB(p.dbName).C(CollectionUser)
+	var userData UserData
+	err := c.Find(bson.M{"username": username,"password": password}).One(&userData)
+	if err != nil {
+		debugLog.Printf("查询用户信息错误,err:%v\n",err)
+		return userData,err
+	}
+	return userData,err
+}
+
+//查询地址信息
 func (p *DBInfo) findAddress(latitude,longitude string)(AddressData,error) {
 	s := p.session.Copy()
 	defer s.Close()

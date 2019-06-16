@@ -26,8 +26,45 @@ func (p *HttpListener) listen(port int) {
 	http.ListenAndServe(sPort, nil)
 }
 
+type UserData struct {
+	Username string `json:"username"`
+}
+
+type User struct {
+	Code int      `json:"code"`
+	Data UserData `json:"user"`
+}
+
+/* 处理用户登录 */
+func (p *HttpListener) handleLogin(w http.ResponseWriter, r *http.Request) {
+	//访问控制允许全部来源 允许跨域
+	w.Header().Set("Access-Control-Allow-Origin","*")
+
+	username := r.FormValue("username")
+	password := r.FormValue("password")
+
+	checkResult := p.checkFields(username,password)
+	if !checkResult {
+		sErr := p.makeResult(1000,"缺少必要字段")
+		w.Write([]byte(sErr))
+		return
+	}
+	userData,err := p.dbInfo.findUser(username,password)
+	if err != nil {
+	 	sErr := p.makeResult(1001,"用户名或密码错误")
+	 	w.Write([]byte(sErr))
+		return
+	}
+	user := User{
+		Code: 0,
+		Data: userData,
+	}
+	buf,_ := json.Marshal(user)
+	w.Write(buf)
+}
+
 type AddressData struct {
-	Addr string      `json:"address" bson:"address"` 
+	Addr string      `json:"address" bson:"address"`
 	City string      `json:"city"`
 }
 
