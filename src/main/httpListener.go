@@ -64,7 +64,7 @@ func (p *HttpListener) handleLogin(w http.ResponseWriter, r *http.Request) {
 }
 
 type AddressData struct {
-	Addr string      `json:"address" bson:"address"`
+	Addr string      `json:"title" bson:"address"`
 	City string      `json:"city"`
 }
 
