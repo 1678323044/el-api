@@ -16,6 +16,7 @@ type DBInfo struct {
 const (
 	CollectionUser string = "user"
 	CollectionAddress string = "address"
+	CollectionShops string = "shops"
 )
 
 func ConnToDB(cfg *Config) (*DBInfo, error) {
@@ -61,4 +62,32 @@ func (p *DBInfo) findAddress(latitude,longitude string)(AddressData,error) {
 		return addressData,err
 	}
 	return addressData,err
+}
+
+//查询商铺信息
+func (p *DBInfo) findShops() ([]ShopsData,error){
+	s := p.session.Copy()
+	defer s.Close()
+	c := s.DB(p.dbName).C(CollectionShops)
+	var shopsData []ShopsData
+	err := c.Find(nil).All(&shopsData)
+	if err != nil {
+		debugLog.Printf("查询商铺列表错误,err:%v\n",err)
+		return nil,err
+	}
+	return shopsData,err
+}
+
+//查询搜索商铺信息
+func (p *DBInfo) findSearchShops(val string) ([]ShopsData,error) {
+	s := p.session.Copy()
+	defer s.Close()
+	c := s.DB(p.dbName).C(CollectionShops)
+	var shopsData []ShopsData
+	err := c.Find(bson.M{"name": val}).All(&shopsData)
+	if err != nil {
+		debugLog.Printf("查询搜索商铺列表错误,err:%v\n",err)
+		return nil,err
+	}
+	return shopsData,err
 }
