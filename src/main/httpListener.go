@@ -26,15 +26,6 @@ func (p *HttpListener) listen(port int) {
 	http.ListenAndServe(sPort, nil)
 }
 
-type UserData struct {
-	Username string `json:"username"`
-}
-
-type User struct {
-	Code int      `json:"code"`
-	Data UserData `json:"user"`
-}
-
 /* 处理用户登录 */
 func (p *HttpListener) handleLogin(w http.ResponseWriter, r *http.Request) {
 	//访问控制允许全部来源 允许跨域
@@ -63,16 +54,6 @@ func (p *HttpListener) handleLogin(w http.ResponseWriter, r *http.Request) {
 	w.Write(buf)
 }
 
-type AddressData struct {
-	Addr string      `json:"title" bson:"address"`
-	City string      `json:"city"`
-}
-
-type Address struct {
-	Code  int         `json:"code"`
-	Data  AddressData `json:"address"`
-}
-
 /* 处理地址信息 */
 func (p *HttpListener)handlePosition (w http.ResponseWriter, r *http.Request) {
 	//访问控制允许全部来源 允许跨域
@@ -99,5 +80,24 @@ func (p *HttpListener)handlePosition (w http.ResponseWriter, r *http.Request) {
 		Data: addressData,
 	}
 	buf,_ := json.Marshal(address)
+	w.Write(buf)
+}
+
+/* 处理商铺列表 */
+func (p *HttpListener) handleShops(w http.ResponseWriter, r *http.Request){
+	//访问控制允许全部来源 允许跨域
+	w.Header().Set("Access-Control-Allow-Origin","*")
+
+	shopsData,err := p.dbInfo.findShops()
+	if err != nil {
+		sErr := p.makeResult(1001,"查询商铺列表失败")
+		w.Write([]byte(sErr))
+		return
+	}
+	shops := Shops{
+		Code: 0,
+		Data: shopsData,
+	}
+	buf,_ := json.Marshal(shops)
 	w.Write(buf)
 }
