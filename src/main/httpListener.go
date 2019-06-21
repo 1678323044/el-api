@@ -42,8 +42,8 @@ func (p *HttpListener) handleLogin(w http.ResponseWriter, r *http.Request) {
 	}
 	userData,err := p.dbInfo.findUser(username,password)
 	if err != nil {
-	 	sErr := p.makeResult(1001,"用户名或密码错误")
-	 	w.Write([]byte(sErr))
+		sErr := p.makeResult(1001,"用户名或密码错误")
+		w.Write([]byte(sErr))
 		return
 	}
 	user := User{
@@ -99,5 +99,50 @@ func (p *HttpListener) handleShops(w http.ResponseWriter, r *http.Request){
 		Data: shopsData,
 	}
 	buf,_ := json.Marshal(shops)
+	w.Write(buf)
+}
+
+/* 处理搜索商铺列表 */
+func (p *HttpListener)handleSearchShops (w http.ResponseWriter, r *http.Request) {
+	//访问控制允许全部来源 允许跨域
+	w.Header().Set("Access-Control-Allow-Origin","*")
+
+	val := r.FormValue("val")
+	checkResult := p.checkFields(val)
+	if !checkResult {
+		sErr := p.makeResult(1000,"缺少必要字段")
+		w.Write([]byte(sErr))
+		return
+	}
+	shopsData,err := p.dbInfo.findSearchShops(val)
+	if err != nil {
+		sErr := p.makeResult(1001,"查询搜索商铺列表失败")
+		w.Write([]byte(sErr))
+		return
+	}
+	shops := Shops{
+		Code: 0,
+		Data: shopsData,
+	}
+	buf,_ := json.Marshal(shops)
+	w.Write(buf)
+}
+
+/* 处理商品分类 */
+func (p *HttpListener) handleGoodsClass(w http.ResponseWriter, r *http.Request) {
+	//访问控制允许全部来源 允许跨域
+	w.Header().Set("Access-Control-Allow-Origin","*")
+
+	categoryData,err := p.dbInfo.findGoodsClass()
+	if err != nil {
+		sErr := p.makeResult(1001,"查询商品分类失败")
+		w.Write([]byte(sErr))
+		return
+	}
+	category := Category{
+		Code: 0,
+		Data: categoryData,
+	}
+	buf,_ := json.Marshal(category)
 	w.Write(buf)
 }

@@ -20,8 +20,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/httpListener.go">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="298">
               <caret line="93" column="29" lean-forward="true" selection-start-line="93" selection-start-column="29" selection-end-line="93" selection-end-column="29" />
+=======
+            <state relative-caret-position="617">
+              <caret line="126" column="32" lean-forward="true" selection-start-line="126" selection-start-column="32" selection-end-line="126" selection-end-column="32" />
+>>>>>>> aeb2d44d02d185fa66bb458ad5e1d14cf97dd45e
               <folding>
                 <element signature="e#14#60#0" expanded="true" />
               </folding>
@@ -29,6 +34,30 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/dbs.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="619">
+              <caret line="91" column="20" selection-start-line="91" selection-start-column="11" selection-end-line="91" selection-end-column="20" />
+              <folding>
+                <element signature="e#14#74#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/type.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="479">
+              <caret line="45" column="8" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+>>>>>>> aeb2d44d02d185fa66bb458ad5e1d14cf97dd45e
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -57,6 +86,10 @@
         <option value="$PROJECT_DIR$/src/main/common.go" />
         <option value="$PROJECT_DIR$/bin/el_api.exe.json" />
         <option value="$PROJECT_DIR$/src/main/config.go" />
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/src/main/type.go" />
+>>>>>>> aeb2d44d02d185fa66bb458ad5e1d14cf97dd45e
         <option value="$PROJECT_DIR$/src/main/router.go" />
         <option value="$PROJECT_DIR$/src/main/dbs.go" />
         <option value="$PROJECT_DIR$/src/main/httpListener.go" />
@@ -82,6 +115,11 @@
             <path>
               <item name="el-api" type="b2602c69:ProjectViewProjectNode" />
               <item name="el-api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="el-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="el-api" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="el-api" type="b2602c69:ProjectViewProjectNode" />
@@ -136,7 +174,11 @@
       <filePath value="$PROJECT_DIR$/" />
       <package value="main" />
       <directory value="$PROJECT_DIR$/" />
+<<<<<<< HEAD
       <output_directory value="D:\GithubWork\el-api\bin" />
+=======
+      <output_directory value="E:\GithubWork\el-api\bin" />
+>>>>>>> aeb2d44d02d185fa66bb458ad5e1d14cf97dd45e
       <method v="2" />
     </configuration>
   </component>
@@ -144,12 +186,20 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26627535" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10702875" />
+>>>>>>> aeb2d44d02d185fa66bb458ad5e1d14cf97dd45e
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.12219731" />
+=======
+      <window_info anchor="bottom" id="Run" order="2" weight="0.15333334" />
+>>>>>>> aeb2d44d02d185fa66bb458ad5e1d14cf97dd45e
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -211,10 +261,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/router.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="13" column="26" lean-forward="true" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/common.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+        <state relative-caret-position="224">
+          <caret line="8" column="24" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -227,8 +284,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/dbs.go">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="1120">
           <caret line="70" column="42" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="42" />
+=======
+        <state relative-caret-position="619">
+          <caret line="91" column="20" selection-start-line="91" selection-start-column="11" selection-end-line="91" selection-end-column="20" />
+>>>>>>> aeb2d44d02d185fa66bb458ad5e1d14cf97dd45e
           <folding>
             <element signature="e#14#74#0" expanded="true" />
           </folding>
@@ -237,15 +299,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/type.go">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="196">
           <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+=======
+        <state relative-caret-position="479">
+          <caret line="45" column="8" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="8" />
+>>>>>>> aeb2d44d02d185fa66bb458ad5e1d14cf97dd45e
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/httpListener.go">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="298">
           <caret line="93" column="29" lean-forward="true" selection-start-line="93" selection-start-column="29" selection-end-line="93" selection-end-column="29" />
+=======
+        <state relative-caret-position="617">
+          <caret line="126" column="32" lean-forward="true" selection-start-line="126" selection-start-column="32" selection-end-line="126" selection-end-column="32" />
+>>>>>>> aeb2d44d02d185fa66bb458ad5e1d14cf97dd45e
           <folding>
             <element signature="e#14#60#0" expanded="true" />
           </folding>

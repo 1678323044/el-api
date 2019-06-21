@@ -45,3 +45,15 @@ type Shops struct {
 	Code  int   `json:"code"`
 	Data  []ShopsData `json:"data"`
 }
+
+/* 商品分类 */
+type CategoryData struct {
+	Description string  `json:"description"`
+	IconUrl     string  `json:"icon_url" bson:"iconUrl"`
+	Title       string  `json:"title"`
+}
+
+type Category struct {
+	Code  int  `json:"code"`
+	Data  []CategoryData  `json:"data"`
+}

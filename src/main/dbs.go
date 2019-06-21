@@ -17,6 +17,7 @@ const (
 	CollectionUser string = "user"
 	CollectionAddress string = "address"
 	CollectionShops string = "shops"
+	CollectionCategory string = "category"
 )
 
 func ConnToDB(cfg *Config) (*DBInfo, error) {
@@ -76,4 +77,32 @@ func (p *DBInfo) findShops() ([]ShopsData,error){
 		return nil,err
 	}
 	return shopsData,err
+}
+
+//查询搜索商铺信息
+func (p *DBInfo) findSearchShops(val string) ([]ShopsData,error) {
+	s := p.session.Copy()
+	defer s.Close()
+	c := s.DB(p.dbName).C(CollectionShops)
+	var shopsData []ShopsData
+	err := c.Find(bson.M{"name": bson.M{"$regex": bson.RegEx{Pattern: val,Options: "im"}}}).All(&shopsData)
+	if err != nil {
+		debugLog.Printf("查询搜索商铺列表错误,err:%v\n",err)
+		return nil,err
+	}
+	return shopsData,err
+}
+
+//查询商品分类
+func (p *DBInfo) findGoodsClass() ([]CategoryData, error) {
+	s := p.session.Copy()
+	defer s.Close()
+	c := s.DB(p.dbName).C(CollectionCategory)
+	var categoryData []CategoryData
+	err := c.Find(nil).All(&categoryData)
+	if err != nil {
+		debugLog.Printf("查询商品分类错误，err:%v\n",err)
+		return nil,err
+	}
+	return categoryData,err
 }
